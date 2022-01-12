@@ -11,21 +11,25 @@
                     <label for="pao">Escolha o pão:</label>
                     <select name="pao" id="pao" v-model="pao">
                         <option value="">Selecione o seu pão</option>
-                        <option value="integral">Integral</option>  <!--Essa opção é só para marcar... As opções viram dinamicamento do backend-->"
+                        <option v-for="pao in paes" :key="pao.id" :value="pao.tipo">
+                            {{pao.tipo}}
+                        </option>  <!--Agora temos um v-for que renderiza as options com dados do data() que vieram do backend-->"
                     </select>
                 </div>
                 <div class="input-container">
                     <label for="carne">Escolha a carne do seu Burguer:</label>
                     <select name="carne" id="carne" v-model="carne">
                         <option value="">Selecione o tipo de carne</option>
-                        <option value="maminha">Maminha</option>  <!--Essa opção é só para marcar... As opções viram dinamicamento do backend-->"
+                        <option v-for="carne in carnes" :key="carne.id" :value="carne.tipo">
+                            {{carne.tipo}}
+                        </option> <!--Agora as options vem dinamicamente do data() que rebebe os dados do backend-->"
                     </select>
                 </div>
                 <div id="opcionais-container" class="input-container">
                     <label id="opcionais-title" for="opcionais">Selecione os opcionais</label>
-                    <div class="checkbox-container">
-                        <input type="checkbox" name="opcionais" v-model="opcionais" value="salame">
-                        <span>Salame</span>
+                    <div class="checkbox-container" v-for="opcional in opcionaisdata" :key="opcional.id">
+                        <input type="checkbox" name="opcionais" v-model="opcionais" :value="opcional.tipo">
+                        <span>{{opcional.tipo}}</span>
                     </div>
                 </div>
                 <div class="input-container">
@@ -61,7 +65,7 @@ export default {
             // console.log(data) testando para ver se a requisição foi executada
 
             this.paes = data.paes;
-            this.carne = data.carnes;
+            this.carnes = data.carnes;
             this.opcionaisdata = data.opcionais;
         }
 
