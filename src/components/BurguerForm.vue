@@ -2,7 +2,7 @@
     <div>
         <p>Componente de mensagem</p>
         <div id="form-container">
-            <form id="burguer-form">
+            <form id="burguer-form" method="POST" @submit="createBurguer">
                 <div class="input-container">
                     <label for="nome">Nome do  cliente:</label>
                     <input type="text" id="nome" name="nome" v-model="nome" placeholder="Digite o seu nome">
@@ -54,19 +54,55 @@ export default {
             pao: null,
             carne: null,
             opcionais: [],
-            status: "Solicitado",
             msg: null
         }
     },
     methods: {
         async getIngredientes(){
-            const req = await fetch("http://localhost:3000/ingredientes");
-            const data = await req.json();
+            const req = await fetch("http://localhost:3000/ingredientes"); //Armazeno o body da rota especificada como json
+            const data = await req.json(); //data recebe o body da requisição como um objeto javascript
             // console.log(data) testando para ver se a requisição foi executada
 
+            //Atribuindo os valores obtidos do backend aos dados correspondentes no data() do componente BurguerForm
+            //Esses dados serão usados para renderizar as opções de ingradientes na tela com o v-for
             this.paes = data.paes;
             this.carnes = data.carnes;
             this.opcionaisdata = data.opcionais;
+        },
+        async createBurguer(e){
+            e.preventDefault();
+
+            const data= { //Esse objeto representa o hamburguer cadastrado
+                nome: this.nome,
+                carne: this.carne,
+                pao: this.pao,
+                opcionais: Array.from(this.opcionais),
+                status: "Solicitado"
+            }
+
+            const dataJson = JSON.stringify(data); //Convertendo o objeto data para json para enviar ao servidor
+           
+           //enviando a requisição de POST
+            const req = await fetch("http://localhost:3000/burgers", {
+                method: "POST",
+                headers: { "Content-Type" : "application/json" },
+                body: dataJson
+            });
+
+            // Posso obter uma resposta do servidor:
+            const res = await req.json();
+            console.log(res);
+
+            //console.log(data.opcionais) //teste para ver se o método está funcionando
+
+            // colocar Mensagem
+            // apagar mensagem
+            
+            // apagar os campos
+            this.nome = "";
+            this.pao = "";
+            this.carne = "";
+            this.opcionais = "";
         }
 
     },
