@@ -77,5 +77,28 @@
       "tipo": "Finalizado"
     }
   ],
-  "burgers": []
+  "burgers": [
+    {
+      "nome": "Vag",
+      "carne": "Maminha",
+      "pao": "Italiano Branco",
+      "opcionais": [
+        "Bacon",
+        "Salame"
+      ],
+      "status": "Solicitado",
+      "id": 1
+    },
+    {
+      "nome": "Tay",
+      "carne": "Picanha",
+      "pao": "3 Queijos",
+      "opcionais": [
+        "Pepino",
+        "Tomate"
+      ],
+      "status": "Solicitado",
+      "id": 2
+    }
+  ]
 }

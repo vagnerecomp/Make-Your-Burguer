@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Componente de mensagem</p>
+        <Message :msg ="msg" v-show="msg" /> <!--passando o valor de msg (do data) para a props msg do componente Message-->
         <div id="form-container">
             <form id="burguer-form" method="POST" @submit="createBurguer">
                 <div class="input-container">
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import Message from "./Message.vue";
 export default {
     name: "BurguerForm",
     data(){
@@ -96,18 +97,22 @@ export default {
             //console.log(data.opcionais) //teste para ver se o método está funcionando
 
             // colocar Mensagem
+            this.msg =`Pedido nº ${res.id} realizado com sucesso`
             // apagar mensagem
-            
+            setTimeout(()=> this.msg = "", 3000)
             // apagar os campos
             this.nome = "";
             this.pao = "";
             this.carne = "";
-            this.opcionais = "";
+            this.opcionais = [];
         }
 
     },
     mounted(){
         this.getIngredientes();
+    },
+    components: {
+        Message
     }
 }
 </script>
