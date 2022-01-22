@@ -77,7 +77,7 @@
       "tipo": "Finalizado"
     }
   ],
-  "burgers": [
+  "burguers": [
     {
       "nome": "Vag",
       "carne": "Maminha",
@@ -90,15 +90,67 @@
       "id": 1
     },
     {
-      "nome": "Tay",
+      "nome": "Osvaldo",
       "carne": "Picanha",
       "pao": "3 Queijos",
       "opcionais": [
-        "Pepino",
-        "Tomate"
+        "Bacon",
+        "Salame",
+        "Cheddar"
       ],
       "status": "Solicitado",
       "id": 2
+    },
+    {
+      "nome": "Tay",
+      "carne": "Veggie burger",
+      "pao": "Parmesão e Orégano",
+      "opcionais": [
+        "Pepino",
+        "Tomate",
+        "Cebola roxa"
+      ],
+      "status": "Solicitado",
+      "id": 3
+    },
+    {
+      "nome": "Vagner",
+      "carne": "Alcatra",
+      "pao": "Italiano Branco",
+      "opcionais": [
+        "Bacon",
+        "Salame",
+        "Cheddar"
+      ],
+      "status": "Solicitado",
+      "id": 4
+    },
+    {
+      "nome": "Pedro",
+      "carne": "Picanha",
+      "pao": "3 Queijos",
+      "opcionais": [
+        "Bacon",
+        "Salame",
+        "Cebola roxa",
+        "Cheddar",
+        "Tomate",
+        "Pepino"
+      ],
+      "status": "Solicitado",
+      "id": 5
+    },
+    {
+      "nome": "Luciano",
+      "carne": "Veggie burger",
+      "pao": "Integral",
+      "opcionais": [
+        "Cebola roxa",
+        "Tomate",
+        "Pepino"
+      ],
+      "status": "Solicitado",
+      "id": 6
     }
   ]
 }

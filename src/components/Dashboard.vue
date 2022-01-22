@@ -17,38 +17,24 @@
                     <div>{{ burguer.carne }}</div>
                     <div>
                         <ul>
-                            <li v-for="(opcional, index) in burguers.opcionais" :key="index">{{ opcional }}</li>
+                            <li v-for="(opcional, index) in burguer.opcionais" :key="index">
+                                {{ opcional }}
+                            </li>
                         </ul>
                     </div>
                     <div>
                         <select name="status" class="status">
                             <option value="">Selecione</option>
+                            <option v-for="state in status" :key="state.id" :selected="burguer.status == state.tipo" value="state.tipo">
+                                {{ state.tipo }}
+                            </option>
                         </select>
-                        <button class="delete-btn">
+                        <button class="delete-btn" @click="deleteBurguer(burguer.id)"> <!--Eu tenho acesso ao burguer porque, como esse butão é um elemento filho de .burguer-table-row, ainda estamos no loop v-for="burguer in burguers"-->
                             Cancelar
                         </button>
                     </div>
                 </div>
-                <div class="burguer-table-row">
-                    <div class="order-number">1</div>
-                    <div>Jão</div>
-                    <div>Pão de Trigo</div>
-                    <div>Picanha</div>
-                    <div>
-                        <ul>
-                            <li>Salame</li>
-                            <li>Tomate</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <select name="status" class="status">
-                            <option value="">Selecione</option>
-                        </select>
-                        <button class="delete-btn">
-                            Cancelar
-                        </button>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -65,12 +51,33 @@ export default {
         }
     },
     methods: {
-        async getPedidos(){
-            const req = await fetch("http://localhost:3000/burguers");
+        async getPedidos() {
+            const req = await fetch('http://localhost:3000/burguers');
             const data = await req.json();
             this.burguers = data;
-            // console.log(this.burguers);
-        }
+            console.log(this.burguers);
+            // Resgata os status de pedidos
+            this.getStatus();
+      },
+      async getStatus(){
+          const req = await fetch('http://localhost:3000/status');
+          const data = await req.json();
+          this.status = data;
+          //   console.log(this.status);
+      },
+      async deleteBurguer(id){ //Fiz a requisição interpolando o parâmetro id
+          const req = await fetch(`http://localhost:3000/burguers/${id}`, {
+              method: "DELETE"
+          });
+          
+          const res = await req.json();
+          this.getPedidos(); //Forçando uma atualização do sistema por meio do backend
+          //Eu poderia fazer essa atualização manualmente, deletando os itens correspondentes no burguers do data()
+          //Mas cabe a mim analisar qual implementação se adequa mais a situação
+          // No caso dessa implementação, chamando o this.getPedidos() no deleteBurguer(), o sistema faz 3 requisições: GET Pedidos/ GET Status/ DELETE burguer
+          //Até aqui fizemos Create, Read e Delete... Falta apenas o Update para completar um sistema de CRUD.   
+      }
+    
     },
     mounted(){
         this.getPedidos(); 

@@ -84,7 +84,7 @@ export default {
             const dataJson = JSON.stringify(data); //Convertendo o objeto data para json para enviar ao servidor
            
            //enviando a requisição de POST
-            const req = await fetch("http://localhost:3000/burgers", {
+            const req = await fetch("http://localhost:3000/burguers", {
                 method: "POST",
                 headers: { "Content-Type" : "application/json" },
                 body: dataJson
