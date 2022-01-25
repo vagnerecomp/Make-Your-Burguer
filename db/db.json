@@ -79,56 +79,32 @@
   ],
   "burguers": [
     {
-      "nome": "Vag",
-      "carne": "Maminha",
-      "pao": "Italiano Branco",
+      "nome": "Armênico",
+      "carne": "Alcatra",
+      "pao": "3 Queijos",
       "opcionais": [
         "Bacon",
-        "Salame"
+        "Salame",
+        "Cebola roxa"
       ],
       "status": "Solicitado",
       "id": 1
     },
     {
-      "nome": "Osvaldo",
-      "carne": "Picanha",
-      "pao": "3 Queijos",
+      "nome": "João Teles",
+      "carne": "Veggie burger",
+      "pao": "Italiano Branco",
       "opcionais": [
-        "Bacon",
-        "Salame",
-        "Cheddar"
+        "Tomate",
+        "Pepino"
       ],
       "status": "Solicitado",
       "id": 2
     },
     {
-      "nome": "Tay",
-      "carne": "Veggie burger",
+      "nome": "Jackie Chan da Silva",
+      "carne": "Maminha",
       "pao": "Parmesão e Orégano",
-      "opcionais": [
-        "Pepino",
-        "Tomate",
-        "Cebola roxa"
-      ],
-      "status": "Solicitado",
-      "id": 3
-    },
-    {
-      "nome": "Vagner",
-      "carne": "Alcatra",
-      "pao": "Italiano Branco",
-      "opcionais": [
-        "Bacon",
-        "Salame",
-        "Cheddar"
-      ],
-      "status": "Solicitado",
-      "id": 4
-    },
-    {
-      "nome": "Pedro",
-      "carne": "Picanha",
-      "pao": "3 Queijos",
       "opcionais": [
         "Bacon",
         "Salame",
@@ -138,19 +114,7 @@
         "Pepino"
       ],
       "status": "Solicitado",
-      "id": 5
-    },
-    {
-      "nome": "Luciano",
-      "carne": "Veggie burger",
-      "pao": "Integral",
-      "opcionais": [
-        "Cebola roxa",
-        "Tomate",
-        "Pepino"
-      ],
-      "status": "Solicitado",
-      "id": 6
+      "id": 3
     }
   ]
 }

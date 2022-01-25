@@ -1,5 +1,6 @@
 <template>
     <div id="burguer-table">
+        <Message :msg ="msg" v-show="msg" />
         <div>
             <div id="burguer-table-heading">
                 <div class="order-id">#:</div>
@@ -23,9 +24,9 @@
                         </ul>
                     </div>
                     <div>
-                        <select name="status" class="status">
+                        <select name="status" class="status" @change="updateBurguer($event, burguer.id)">
                             <option value="">Selecione</option>
-                            <option v-for="state in status" :key="state.id" :selected="burguer.status == state.tipo" value="state.tipo">
+                            <option v-for="state in status" :key="state.id" :selected="burguer.status == state.tipo" :value="state.tipo">
                                 {{ state.tipo }}
                             </option>
                         </select>
@@ -41,14 +42,19 @@
 </template>
 
 <script>
+import Message from "./Message.vue";
 export default {
     name: 'Dashboard',
     data(){
         return{
             burguers: null,
             burguer_id: null,
-            status: []
+            status: [],
+            msg: null
         }
+    },
+    components: {
+        Message
     },
     methods: {
         async getPedidos() {
@@ -76,7 +82,29 @@ export default {
           //Mas cabe a mim analisar qual implementação se adequa mais a situação
           // No caso dessa implementação, chamando o this.getPedidos() no deleteBurguer(), o sistema faz 3 requisições: GET Pedidos/ GET Status/ DELETE burguer
           //Até aqui fizemos Create, Read e Delete... Falta apenas o Update para completar um sistema de CRUD.   
+
+          this.msg =`Pedido nº ${id} cancelado com sucesso`
+          // apagar mensagem
+          setTimeout(()=> this.msg = "", 3000)
+      },
+      async updateBurguer(event, id){
+          const option = event.target.value;
+          const dataJson = JSON.stringify({status: option});
+          const req = await fetch(`http://localhost:3000/burguers/${id}`, {
+              method: "PATCH", //É como se fosse o UPDATE mas só atualiza o que estamos enviando no bodyx
+              headers: {"Content-Type" : "application/json"},
+              body: dataJson
+          });
+
+          const res = await req.json();
+          console.log(res);
+
+          this.msg =`Pedido nº ${res.id} foi atualizado para ${res.status}`
+            // apagar mensagem
+            setTimeout(()=> this.msg = "", 3000)
       }
+
+      
     
     },
     mounted(){
