@@ -60,7 +60,7 @@ export default {
     },
     methods: {
         async getIngredientes(){
-            const req = await fetch("http://localhost:3000/ingredientes"); //Armazeno o body da rota especificada como json
+            const req = await fetch("https://localhost:3000/ingredientes"); //Armazeno o body da rota especificada como json
             const data = await req.json(); //data recebe o body da requisição como um objeto javascript
             // console.log(data) testando para ver se a requisição foi executada
 
@@ -84,7 +84,7 @@ export default {
             const dataJson = JSON.stringify(data); //Convertendo o objeto data para json para enviar ao servidor
            
            //enviando a requisição de POST
-            const req = await fetch("http://localhost:3000/burguers", {
+            const req = await fetch("https://localhost:3000/burguers", {
                 method: "POST",
                 headers: { "Content-Type" : "application/json" },
                 body: dataJson

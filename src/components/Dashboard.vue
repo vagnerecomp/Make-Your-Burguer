@@ -99,7 +99,7 @@ export default {
           const res = await req.json();
           console.log(res);
 
-          this.msg =`Pedido nº ${res.id} foi atualizado para ${res.status}`
+          this.msg =`O pedido nº ${res.id} foi atualizado para ${res.status}`
             // apagar mensagem
             setTimeout(()=> this.msg = "", 3000)
       }
